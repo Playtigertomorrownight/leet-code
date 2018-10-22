@@ -182,6 +182,32 @@ public class leetCodeSolution {
 		return result;
 	}
 	
-	
+	 /**
+	  * 16. 3Sum Closest
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+	public static int threeSumClosest(int[] nums, int target) {
+		int result = 0,min=Integer.MAX_VALUE;
+		int len=nums.length;
+		if(len==0) return result;
+		Arrays.sort(nums);
+		for(int i=0;i<len-2;i++) {
+			if(i-1>=0&&nums[i]==nums[i-1]) continue;
+			int low = i+1,height=len-1,temp=target-nums[i];
+			while(low<height) {
+				if(Math.abs(nums[low]+nums[height]-temp)<min) {
+					min = Math.abs(nums[low]+nums[height]-temp);
+					result = nums[low]+nums[height]+nums[i];
+					while(low<height&&nums[low]==nums[low+1]) low++;
+					while(height>low&&nums[height]==nums[height-1]) height--;
+					low++;	height--;
+				}else height--;
+					
+			}
+		}
+		return result;
+	 }
 
 }
