@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * leetcode 平台的算法题目解�?
- * @author wangying.dz3
- *
- */
-/**
+ * leetcode leetcode Algorithm problem solving
  * @author wangying.dz3
  *
  */
 public class leetCodeSolution {
 
 	/**
-	 * 字符串匹�?
+	 * 
+	 * 10. Regular Expression Matching
 	 * @param s
 	 * @param p
 	 * @return
@@ -31,7 +28,7 @@ public class leetCodeSolution {
 	}
 	
 	/**
-	 * 字符串匹�?
+	 * 10. Regular Expression Matching --  Dynamic planning
 	 * @param s
 	 * @param p
 	 * @return
@@ -142,13 +139,18 @@ public class leetCodeSolution {
 	 }
 	
 	
-   public List<List<Integer>> threeSum(int[] nums) {
-	   List<List<Integer>> result = new ArrayList<List<Integer>>();
-	   
-	   
-	   return result;
-	   
-    }
+	/**
+	 * 15. 3Sum
+	 * @param nums
+	 * @return
+	 */
+	public List<List<Integer>> threeSum(int[] nums) {
+		   List<List<Integer>> result = new ArrayList<List<Integer>>();
+		   
+		   
+		   return result;
+		   
+	    }
 	
 	
 }
