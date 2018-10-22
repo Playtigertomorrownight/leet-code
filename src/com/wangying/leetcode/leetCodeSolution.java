@@ -1,7 +1,10 @@
 package com.wangying.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * leetcode leetcode Algorithm problem solving
@@ -157,11 +160,28 @@ public class leetCodeSolution {
 	 * @param nums
 	 * @return
 	 */
-	public List<List<Integer>> threeSum(int[] nums) {
+	public static List<List<Integer>> threeSum(int[] nums) {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
-
+		int len=nums.length;
+		if(len==0) return result;
+		Arrays.sort(nums);
+		for(int i=0;i<len-2;i++) {
+			if(i-1>=0&&nums[i]==nums[i-1]) continue;
+			int low = i+1,height=len-1,temp=-nums[i];
+			while(low<height) {
+				if(nums[low]+nums[height] == temp) {
+					result.add(Arrays.asList(nums[i],nums[low],nums[height]));
+					while(low<height&&nums[low]==nums[low+1]) low++;
+					while(height>low&&nums[height]==nums[height-1]) height--;
+					low++;	height--;
+				}else if(nums[low]+nums[height] < temp) low++;
+				else height--;
+			}
+				
+		}
 		return result;
-
 	}
+	
+	
 
 }
