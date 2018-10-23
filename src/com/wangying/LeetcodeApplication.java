@@ -1,5 +1,8 @@
 package com.wangying;
 
+import java.util.List;
+
+import com.wangying.entity.ListNode;
 import com.wangying.leetcode.leetCodeSolution;
 
 public class LeetcodeApplication {
@@ -7,13 +10,27 @@ public class LeetcodeApplication {
 	
 	public static void main(String[] args) {
 		
-		
-		int [] source = new int [] {0,2,1,-3};
+		String [] source = new String [] {"((((()))))","(((()())))","(((())()))","(((()))())","(((())))()","((()(())))","((()()()))","((()())())","((()()))()","((())(()))","((())()())","((())())()","((()))(())","((()))()()","(()((())))","(()(()()))","(()(())())","(()(()))()","(()()(()))","(()()()())","(()()())()","(()())(())","(()())()()","(())((()))","(())(()())","(())(())()","(())()(())","(())()()()","()(((())))","()((()()))","()((())())","()((()))()","()(()(()))","()(()()())","()(()())()","()(())(())","()(())()()","()()((()))","()()(()())","()()(())()","()()()(())","()()()()()"};
+		//String source = "{[((((()))))]}";
 		long start = System.currentTimeMillis();
-		System.out.println(leetCodeSolution.threeSumClosest(source,1));
+		List<String> strs = leetCodeSolution.generateParenthesis(5);
+		System.out.println(strs);
+			for(int j=0;j<source.length;j++) {
+				if(!strs.contains(source[j]))
+					System.out.println(source[j]);
+			}
+		//printLink(leetCodeSolution.mergeTwoLists(l1,l2));
 		long end = System.currentTimeMillis();
 		
 		System.out.println("use time: "+(end-start)+" ms");
+	}
+	
+	private static void  printLink(ListNode l) {
+		while(l!=null) {
+			System.out.print(l.val+"->");
+			l=l.next;
+		}
+		System.out.println();
 	}
 	
 }
