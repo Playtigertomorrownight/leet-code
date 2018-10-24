@@ -13,12 +13,15 @@ public class LeetcodeApplication {
 		String [] source = new String [] {"((((()))))","(((()())))","(((())()))","(((()))())","(((())))()","((()(())))","((()()()))","((()())())","((()()))()","((())(()))","((())()())","((())())()","((()))(())","((()))()()","(()((())))","(()(()()))","(()(())())","(()(()))()","(()()(()))","(()()()())","(()()())()","(()())(())","(()())()()","(())((()))","(())(()())","(())(())()","(())()(())","(())()()()","()(((())))","()((()()))","()((())())","()((()))()","()(()(()))","()(()()())","()(()())()","()(())(())","()(())()()","()()((()))","()()(()())","()()(())()","()()()(())","()()()()()"};
 		//String source = "{[((((()))))]}";
 		long start = System.currentTimeMillis();
-		List<String> strs = leetCodeSolution.generateParenthesis(5);
-		System.out.println(strs);
-			for(int j=0;j<source.length;j++) {
-				if(!strs.contains(source[j]))
-					System.out.println(source[j]);
-			}
+		List<String> strs = leetCodeSolution.generateParenthesis_(5);
+//		for(String s: strs) {
+//			System.out.println(s);
+//		}
+		System.out.println("size = "+ strs.size());
+//			for(int j=0;j<source.length;j++) {
+//				if(!strs.contains(source[j]))
+//					System.out.println(source[j]);
+//			}
 		//printLink(leetCodeSolution.mergeTwoLists(l1,l2));
 		long end = System.currentTimeMillis();
 		

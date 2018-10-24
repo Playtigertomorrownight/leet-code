@@ -378,45 +378,160 @@ public class leetCodeSolution {
 	 * @param n
 	 * @return
 	 */
+	private static  Map<Integer,List<String>> resultCache = new HashMap<Integer,List<String>>();
 	public static List<String> generateParenthesis(int n) {
 		List<String> result= new ArrayList<String> ();
-		Map<String,Boolean>  map = generateParenthesis_(n);
-		result.addAll(map.keySet());
+		result = resultCache.get(n);
+		if(null==result) {
+			if(n==1) {
+				result =  Arrays.asList("()");
+			}else {
+				result = new ArrayList<String> ();
+				Map<String,Boolean>  map = generateParenthesis_2(n);
+				result.addAll(map.keySet());
+			}
+			resultCache.put(n, result);
+		}
 		return result;
 	}
 	
-	public static Map<String,Boolean> generateParenthesis_(int n) {
+	public static Map<String,Boolean> generateParenthesis_2(int n) {
 		Map<String,Boolean> result= new HashMap<String,Boolean> ();
-		if(n==1) {
-			result.put("()",true);
-			return result;
-		}else {
-			StringBuilder sb = new  StringBuilder();
-			List<String> last = generateParenthesis(n-1);
-			for(String l : last) {
-				//并列
-				sb.setLength(0);
-				result.put(sb.append("()").append(l).toString(),true);
-				sb.setLength(0);
-				result.put(sb.append(l).append("()").toString(),true);
+		StringBuilder sb = new  StringBuilder();
+		boolean iseven = n%2==0;
+		int start = n-1;
+		while(iseven?(start>=n/2):(start>n/2)) {
+			List<String> last_1 = generateParenthesis(start);
+			for(String l : last_1) {
+				List<String> last_2 = generateParenthesis(n-start);
+				for(String l2 : last_2) {
+					//并列
+					sb.setLength(0);
+					result.put(sb.append(l2).append(l).toString(),true);
+					sb.setLength(0);
+					result.put(sb.append(l).append(l2).toString(),true);
+				}
 				//包含
-				sb.setLength(0);
-				result.put(sb.append("(").append(l).append(")").toString(),true);
-			}
-			if(n%4==0) {
-				sb.setLength(0);
-				for(int i=0;i<n/2;i++) {
-					sb.append("(");
+				if(start==n-1) {
+					sb.setLength(0);
+					result.put(sb.append("(").append(l).append(")").toString(),true);
 				}
-				for(int i=0;i<n/2;i++) {
-					sb.append(")");
-				}
-				result.put(sb.append(sb).toString(),true);
+				
 			}
-			
-			return result;
+			start--;
 		}
-		
+		result.remove("");
+		return result;
 	}
+	
+	/**
+	 * STAND SOLUTION
+	 * @param n
+	 * @return
+	 */
+	public static List<String> generateParenthesis_(int n) {
+        List<String> ans = new ArrayList<String>();
+        if (n == 0) {
+            ans.add("");
+        } else {
+            for (int c = 0; c < n; ++c)
+                for (String left: generateParenthesis(c))
+                    for (String right: generateParenthesis(n-1-c))
+                        ans.add("(" + left + ")" + right);
+        }
+        return ans;
+    }
+	
+	
+	/**
+	 * 23. Merge k Sorted Lists
+	 * @param lists
+	 * @return
+	 */
+	public static ListNode mergeKLists(ListNode[] lists) {
+		ListNode result = new ListNode(0),temp=result;
+		int min;
+		int index = 0;
+		while(true) {
+			min = Integer.MAX_VALUE;
+			for(int i=0,len=lists.length;i<len;i++) {
+				if(null!=lists[i]&&lists[i].val<min) {
+					min = lists[i].val;
+					index = i;	
+				}
+			}
+			if(min==Integer.MAX_VALUE) break;
+			temp.next = new ListNode(lists[index].val);
+			lists[index] = lists[index].next;
+			temp = temp.next;
+		}
+		return result.next;
+    }
+	
+	/**
+	 * 23. Merge k Sorted Lists  分治
+	 * @param lists
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	public static ListNode mergeKLists_(ListNode[] lists,int start ,int end) {
+		if(start>end) return null;
+		if(start==end) return lists[start];
+		int mid = start+(end-start)/2;
+		
+		ListNode left = mergeKLists_(lists,start,mid);
+		ListNode right = mergeKLists_(lists,mid+1,end);
+		
+		ListNode result = new ListNode(0),temp = result;
+		while(left!=null&&right!=null) {
+			if(left.val<right.val) {
+				temp.next = new ListNode(left.val);
+				left = left.next;
+			}else {
+				temp.next = new ListNode(right.val);
+				right = right.next;
+			}
+			temp = temp.next;
+		}
+		if(left!=null) temp.next = left;
+		if(right!=null) temp.next = right;
+		
+		return result.next;
+    }
+	
+	
+	/**
+	 * 24. Swap Nodes in Pairs
+	 * @param head
+	 * @return
+	 */
+	public static ListNode swapPairs(ListNode head) {
+		ListNode result = new ListNode(0);
+		result.next = head;
+		ListNode last = result;
+		while(null!=head)	{
+			if(head.next==null) break;
+			ListNode temp  = head.next;
+			head.next = temp.next;
+			temp.next = head;
+			last.next = temp;
+			last = head;
+			head = head.next;
+		}
+		return result.next;
+    }
+	
+	/**
+	 * 25. Reverse Nodes in k-Group
+	 * @param head
+	 * @param k
+	 * @return
+	 */
+	public static ListNode reverseKGroup(ListNode head, int k) {
+        
+		
+		return head;
+    }
 	
 }
