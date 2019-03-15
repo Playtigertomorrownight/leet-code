@@ -529,9 +529,11 @@ public class leetCodeSolution {
 	 * @return
 	 */
 	public static ListNode reverseKGroup(ListNode head, int k) {
-        
+      if(head==null||k<=1) return head;
+      ListNode temp = head;
+       
 		 
-		return head;
-    }
+		  return head;
+   }
 	
 }

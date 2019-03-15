@@ -2,6 +2,11 @@ package com.wangying;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +27,12 @@ public class OtherMain {
     StringBuilder sbd = new StringBuilder(a);
     StringBuffer sbf = new StringBuffer(sbd);
     System.out.println(num==num2);
+    
+    Map map = Collections.synchronizedMap(null);
+    LinkedHashMap lm = new LinkedHashMap();
+    HashSet set = new HashSet();
+    Thread t = new Thread();
+     
     
   }
   
