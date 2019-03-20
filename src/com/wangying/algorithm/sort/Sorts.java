@@ -1,4 +1,4 @@
-package com.wangying.algorithm;
+package com.wangying.algorithm.sort;
 
 /**
  * 排序方法,都是用整数演示
